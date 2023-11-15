@@ -1,0 +1,139 @@
+.container{
+    height: 80vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.input{
+    font-size: 35px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid;
+    &:focus{
+     border-bottom: 2px solid;
+    }
+    &:disabled{
+     background: none;
+    }
+}
+
+.word {
+    border-bottom: 1px solid;
+    user-select: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.correctBlock {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+   font-size: 35px;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   user-select: none;
+}
+.uncorrect{
+ color: gray;
+ font-size: 35px;
+ font-family: Verdana, Geneva, Tahoma, sans-serif;
+ user-select: none;
+}
+.correct{
+ color: #286f28;
+ font-size: 35px;
+ font-family: Verdana, Geneva, Tahoma, sans-serif;
+ user-select: none;
+ font-weight: 4 00;
+}
+
+.select{
+    color: #286f28;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 34px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    user-select: none;
+    &:disabled{
+    opacity: 0.9;
+    cursor: default;
+    appearance: none;
+   }
+}
+.option{
+    font-size: 25px;
+}
+
+.resultBlock{
+    font-size: 35px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+}
+.result{
+ color: green;
+}
+.mistakesResult{
+    cursor: pointer;
+    color: red;
+}
+.goodRating{
+    color: green;
+}
+.badRating{
+    color: #bd0404;
+}
+
+.retryBlock{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+.retryIcon{
+    width: 50px;
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+.mistakesBlock{
+    background: white;
+    box-shadow: 0px 0px 10px lightgray;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: fixed;
+    margin-left: 800px;
+    overflow: auto;
+    height: max-content;
+    max-height: 400px;
+    display: flex;
+    gap: 40px;
+    &::-webkit-scrollbar {
+     width: 5px;
+   }
+   &::-webkit-scrollbar-thumb {
+     background-color: #909090;
+     border-radius: 20px;
+   }
+    @media(max-width: 600px){
+     max-height: 200px;
+     margin-left: 0px;
+     margin-top: 650px;
+    }
+}
+.mistake{
+    list-style: decimal;
+}
