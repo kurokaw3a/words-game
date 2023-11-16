@@ -1,10 +1,10 @@
 /* eslint-disable react/button-has-type */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './Main.module.css'
+import styles from './Hub.module.css'
 import { randomWord } from './Randomizer';
 
-const Main = () => {
+const Hub = () => {
   const [word, setWord] = useState(randomWord())
   setTimeout(() => {
     setWord(randomWord())
@@ -21,10 +21,10 @@ const Main = () => {
       <div className={styles.navigation}>
         <h1 className={styles.title}>The words game</h1>
         <button onClick={play} className={styles.playButton}>Play</button>
-        <button onClick={() => alert('Coming soon')} className={styles.optionsButton}>options</button>
+        <button onClick={() => alert('coming soon!')} className={styles.optionsButton}>options</button>
       </div>
     </div>
   )
 }
 
-export default Main;
+export default Hub;
