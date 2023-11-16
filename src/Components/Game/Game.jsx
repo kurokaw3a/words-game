@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState } from 'react';
-import { randomWord } from './Randomizer';
+import { randomWord } from '../Randomizer';
 import styles from './Game.module.css'
 
 function Game() {
@@ -68,49 +68,48 @@ function Game() {
     if (mistakes.length >= 1) { setShowMistakes((prev) => !prev) }
   }
   return (
-    <div>
-      <div className={styles.container}>
-        <form className={styles.block} onSubmit={checkWord}>
-          <h1 className={styles.word}>{currentWord}</h1>
-          <input className={styles.input} onFocus={onStart} disabled={end} placeholder={currentWord} value={input} onChange={inputChangeHandler} type="text" />
-          {end === false ? (
-            <div className={styles.correctBlock}>
-              <p className={end ? styles.correct : styles.uncorrect}>
+    <div className={styles.container}>
+      <form className={styles.block} onSubmit={checkWord}>
+        <h1 className={styles.word}>{currentWord}</h1>
+        <input className={styles.input} onFocus={onStart} disabled={end} placeholder={currentWord} value={input} onChange={inputChangeHandler} type="text" />
+        {end === false ? (
+          <div className={styles.correctBlock}>
+            <p className={end ? styles.correct : styles.uncorrect}>
+              {correct}
+            </p>
+            /
+            <select className={styles.select} onChange={difficultHandler} disabled={start}>
+              <option className={styles.option} value={difficult}>10</option>
+              <option className={styles.option} value={20}>20</option>
+              <option className={styles.option} value={30}>30</option>
+              <option className={styles.option} value={40}>40</option>
+              <option className={styles.option} value={50}>50</option>
+            </select>
+          </div>
+        ) : (
+          <div className={styles.retryBlock}>
+            <div className={styles.resultBlock}>
+              <p>Result:</p>
+              <p className={styles.result}>
                 {correct}
+                /
+                {difficult}
               </p>
-              /
-              <select className={styles.select} onChange={difficultHandler} disabled={start}>
-                <option className={styles.option} value={difficult}>10</option>
-                <option className={styles.option} value={20}>20</option>
-                <option className={styles.option} value={30}>30</option>
-                <option className={styles.option} value={40}>40</option>
-                <option className={styles.option} value={50}>50</option>
-              </select>
             </div>
-          ) : (
-            <div className={styles.retryBlock}>
-              <div className={styles.resultBlock}>
-                <p>Result:</p>
-                <p className={styles.result}>
-                  {correct}
-                  /
-                  {difficult}
-                </p>
-              </div>
-              <div className={styles.resultBlock}>
-                <p>Mistakes:</p>
-                <p className={styles.mistakesResult} onClick={showMistakesHandler}>
-                  {mistakesCount}
-                </p>
-              </div>
-              <div className={styles.resultBlock}>
-                <p className={rating >= 70 ? styles.goodRating : styles.badRating}>{rating >= 70 && 'Good' || rating <= 50 && 'Bad'}</p>
-              </div>
-              <img className={styles.retryIcon} onClick={retry} src="https://static.thenounproject.com/png/1921228-200.png" alt="none" />
+            <div className={styles.resultBlock}>
+              <p>Mistakes:</p>
+              <p className={styles.mistakesResult} onClick={showMistakesHandler}>
+                {mistakesCount}
+              </p>
             </div>
-          )}
-        </form>
-        {showMistakes && (
+            <div className={styles.resultBlock}>
+              <p className={rating >= 70 ? styles.goodRating : styles.badRating}>{rating >= 70 && 'Good' || rating <= 50 && 'Bad'}</p>
+            </div>
+            <img className={styles.retryIcon} onClick={retry} src="https://static.thenounproject.com/png/1921228-200.png" alt="none" />
+          </div>
+        )}
+      </form>
+      {showMistakes && (
         <div className={styles.mistakesBlock}>
           <div>
             {mistakes.map((el) => (
@@ -125,8 +124,7 @@ function Game() {
             ))}
           </div>
         </div>
-        )}
-      </div>
+      )}
     </div>
   );
 }

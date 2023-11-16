@@ -1,9 +1,9 @@
 import './App.css';
-import Game from './Components/Game';
+import Root from './routes/Root';
 
 function App() {
   return (
-    <Game />
+    <Root />
   )
 }
 
