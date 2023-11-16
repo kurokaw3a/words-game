@@ -1,18 +1,13 @@
 .container{
-    height: 100vh;
+ height: 100vh;
  display: flex;
  justify-content: center;
  align-items: center;
- animation: mount 1s ease-in-out;
-}
-@keyframes mount {
-   from{
-       background: rgb(33, 33, 33);
-   }
-   to{
-    background:rgb(255, 255, 255);
-   }
-   
+ background: rgba(255, 255, 255, 0.89);
+ margin: 100px;
+ padding: 0px 100px 0px 100px;
+ border-radius: 10px;
+ box-shadow: 0 0 10px gray;
 }
 
 .block{
@@ -61,14 +56,13 @@
    font-family: Verdana, Geneva, Tahoma, sans-serif;
    user-select: none;
 }
-.uncorrect{
- color: gray;
+.progress{
  font-size: 35px;
  font-family: Verdana, Geneva, Tahoma, sans-serif;
  user-select: none;
 }
-.correct{
- color: #286f28;
+.target{
+ color: #255b25;
  font-size: 35px;
  font-family: Verdana, Geneva, Tahoma, sans-serif;
  user-select: none;
@@ -127,17 +121,22 @@
     width: 50px;
     cursor: pointer;
     margin-top: 50px;
+    opacity: 0.8;
+    transition: 0.3s;
+    &:hover{
+     opacity: 1;
+    }
 }
 
 .mistakesBlock{
-    background: white;
+    background: rgba(255, 255, 255, 0.957);
     box-shadow: 0px 0px 10px lightgray;
     border-radius: 5px;
     padding: 20px;
     font-size: 25px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     position: fixed;
-    margin-left: 800px;
+    margin-left: 1100px;
     overflow: auto;
     height: max-content;
     max-height: 400px;

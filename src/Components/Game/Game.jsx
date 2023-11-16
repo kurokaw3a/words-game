@@ -3,9 +3,13 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState } from 'react';
 import { randomWord } from '../Randomizer';
-import styles from './Game.module.css'
+import defaultTheme from './Game.module.css'
+import nightTheme from './themes/night.module.css'
 
 function Game() {
+  const theme = localStorage.getItem('theme')
+  const styles = theme === 'night' ? nightTheme : defaultTheme
+
   const [currentWord, setCurrentWord] = useState(randomWord())
   const [input, setInput] = useState('')
   const [correct, setCorrect] = useState(0)
@@ -74,7 +78,7 @@ function Game() {
         <input className={styles.input} onFocus={onStart} disabled={end} placeholder={currentWord} value={input} onChange={inputChangeHandler} type="text" />
         {end === false ? (
           <div className={styles.correctBlock}>
-            <p className={end ? styles.correct : styles.uncorrect}>
+            <p className={end ? styles.target : styles.progress}>
               {correct}
             </p>
             /
