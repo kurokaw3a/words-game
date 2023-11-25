@@ -1,13 +1,16 @@
 .container{
- height: 100vh;
- display: flex;
- justify-content: center;
- align-items: center;
+ height: 800px;
  background: rgba(255, 255, 255, 0.89);
  margin: 100px;
- padding: 0px 100px 0px 100px;
  border-radius: 10px;
  box-shadow: 0 0 10px gray;
+}
+.game {
+    height: 95%;
+    padding: 0px 100px 0px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .block{
@@ -157,4 +160,8 @@
 }
 .mistake{
     list-style: decimal;
+}
+.mainButton{
+ font-size: 20px;
+ margin-left: 10px;
 }

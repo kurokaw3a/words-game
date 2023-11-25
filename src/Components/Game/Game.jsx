@@ -1,14 +1,16 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable no-mixed-operators */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState } from 'react';
+import { useSelector } from 'react-redux'
 import { randomWord } from '../Randomizer';
 import defaultTheme from './Game.module.css'
 import nightTheme from './themes/night.module.css'
 
 function Game() {
-  const theme = localStorage.getItem('theme')
-  const styles = theme === 'night' ? nightTheme : defaultTheme
+  const { themes } = useSelector((state) => state.game)
+  const styles = themes.day && defaultTheme || themes.night && nightTheme
 
   const [currentWord, setCurrentWord] = useState(randomWord())
   const [input, setInput] = useState('')
@@ -73,47 +75,48 @@ function Game() {
   }
   return (
     <div className={styles.container}>
-      <form className={styles.block} onSubmit={checkWord}>
-        <h1 className={styles.word}>{currentWord}</h1>
-        <input className={styles.input} onFocus={onStart} disabled={end} placeholder={currentWord} value={input} onChange={inputChangeHandler} type="text" />
-        {end === false ? (
-          <div className={styles.correctBlock}>
-            <p className={end ? styles.target : styles.progress}>
-              {correct}
-            </p>
-            /
-            <select className={styles.select} onChange={difficultHandler} disabled={start}>
-              <option className={styles.option} value={difficult}>10</option>
-              <option className={styles.option} value={20}>20</option>
-              <option className={styles.option} value={30}>30</option>
-              <option className={styles.option} value={40}>40</option>
-              <option className={styles.option} value={50}>50</option>
-            </select>
-          </div>
-        ) : (
-          <div className={styles.retryBlock}>
-            <div className={styles.resultBlock}>
-              <p>Result:</p>
-              <p className={styles.result}>
+      <div className={styles.game}>
+        <form className={styles.block} onSubmit={checkWord}>
+          <h1 className={styles.word}>{currentWord}</h1>
+          <input className={styles.input} onFocus={onStart} disabled={end} placeholder={currentWord} value={input} onChange={inputChangeHandler} type="text" />
+          {end === false ? (
+            <div className={styles.correctBlock}>
+              <p className={end ? styles.target : styles.progress}>
                 {correct}
-                /
-                {difficult}
               </p>
+              /
+              <select className={styles.select} onChange={difficultHandler} disabled={start}>
+                <option className={styles.option} value={difficult}>10</option>
+                <option className={styles.option} value={20}>20</option>
+                <option className={styles.option} value={30}>30</option>
+                <option className={styles.option} value={40}>40</option>
+                <option className={styles.option} value={50}>50</option>
+              </select>
             </div>
-            <div className={styles.resultBlock}>
-              <p>Mistakes:</p>
-              <p className={styles.mistakesResult} onClick={showMistakesHandler}>
-                {mistakesCount}
-              </p>
+          ) : (
+            <div className={styles.retryBlock}>
+              <div className={styles.resultBlock}>
+                <p>Result:</p>
+                <p className={styles.result}>
+                  {correct}
+                  /
+                  {difficult}
+                </p>
+              </div>
+              <div className={styles.resultBlock}>
+                <p>Mistakes:</p>
+                <p className={styles.mistakesResult} onClick={showMistakesHandler}>
+                  {mistakesCount}
+                </p>
+              </div>
+              <div className={styles.resultBlock}>
+                <p className={rating >= 70 ? styles.goodRating : styles.badRating}>{rating >= 70 && 'Good' || rating <= 50 && 'Bad'}</p>
+              </div>
+              <img className={styles.retryIcon} onClick={retry} src="https://static.thenounproject.com/png/1921228-200.png" alt="none" />
             </div>
-            <div className={styles.resultBlock}>
-              <p className={rating >= 70 ? styles.goodRating : styles.badRating}>{rating >= 70 && 'Good' || rating <= 50 && 'Bad'}</p>
-            </div>
-            <img className={styles.retryIcon} onClick={retry} src="https://static.thenounproject.com/png/1921228-200.png" alt="none" />
-          </div>
-        )}
-      </form>
-      {showMistakes && (
+          )}
+        </form>
+        {showMistakes && (
         <div className={styles.mistakesBlock}>
           <div>
             {mistakes.map((el) => (
@@ -128,7 +131,9 @@ function Game() {
             ))}
           </div>
         </div>
-      )}
+        )}
+      </div>
+      {/* <button className={styles.mainButton}>Main menu</button> */}
     </div>
   );
 }
