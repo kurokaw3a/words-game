@@ -1,13 +1,13 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import styles from './Main.module.css'
+import { GameSlice } from '../store/Game/Game';
 
 const Main = () => {
-  const [theme, setTheme] = useState(localStorage.getItem('theme'))
+  const { themes } = useSelector((state) => state.game)
+  const dispatch = useDispatch()
   const themeChange = (event) => {
-    setTheme(event.target.value)
-    localStorage.setItem('theme', event.target.value)
-    window.location.reload()
+    dispatch(GameSlice.actions.changeTheme(event.target.value))
   }
   const location = useLocation()
   return (
@@ -15,11 +15,11 @@ const Main = () => {
       {location.pathname === '/game'
       && (
       <select onChange={themeChange} className={styles.select}>
-        <option value="day" selected={theme === 'day'} className={styles.option}>day</option>
-        <option value="night" selected={theme === 'night'} className={styles.option}>night</option>
+        <option value="day" selected={themes.day === true && 'day'} className={styles.option}>day</option>
+        <option value="night" selected={themes.night === true && 'night'} className={styles.option}>night</option>
       </select>
       )}
-      <Outlet theme={theme} />
+      <Outlet />
     </div>
   )
 }
