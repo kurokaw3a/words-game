@@ -12,4 +12,19 @@
     margin: 20px;
     font-family: monospace;
     right: 0;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.selectNight{
+    position: absolute;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 20px;
+    font-family: monospace;
+    right: 0;
+    color: white;
+    background: rgb(19, 19, 19);
+    border: none;
+    border-radius: 5px;
+    outline-color: black;
 }

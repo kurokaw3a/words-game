@@ -4,6 +4,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState } from 'react';
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 import { randomWord } from '../Randomizer';
 import defaultTheme from './Game.module.css'
 import nightTheme from './themes/night.module.css'
@@ -73,6 +74,10 @@ function Game() {
   const showMistakesHandler = () => {
     if (mistakes.length >= 1) { setShowMistakes((prev) => !prev) }
   }
+  const navigate = useNavigate()
+  const navToMain = () => {
+    navigate('/')
+  }
   return (
     <div className={styles.container}>
       <div className={styles.game}>
@@ -133,7 +138,7 @@ function Game() {
         </div>
         )}
       </div>
-      {/* <button className={styles.mainButton}>Main menu</button> */}
+      <button onClick={navToMain} className={styles.mainButton}>Main menu</button>
     </div>
   );
 }
