@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-mixed-operators */
 import { Outlet, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './Main.module.css'
@@ -14,7 +16,7 @@ const Main = () => {
     <div className={styles.container}>
       {location.pathname === '/game'
       && (
-      <select onChange={themeChange} className={styles.select}>
+      <select onChange={themeChange} className={themes.day && styles.select || themes.night && styles.selectNight}>
         <option value="day" selected={themes.day === true && 'day'} className={styles.option}>day</option>
         <option value="night" selected={themes.night === true && 'night'} className={styles.option}>night</option>
       </select>
