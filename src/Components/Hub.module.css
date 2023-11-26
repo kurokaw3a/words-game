@@ -43,7 +43,7 @@ font-family: Georgia, 'Times New Roman', Times, serif;
 text-shadow: 0px 0px 10px gray;
 font-size: 35px;
 margin-bottom: 10px;
-width: 300px;
+width: 100%;
 animation: typing 2s steps(22), blink .5s step-end infinite alternate;
 white-space: nowrap;
 overflow: hidden;
