@@ -5,15 +5,17 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { randomWord } from '../Randomizer';
 import defaultTheme from './Game.module.css'
 import nightTheme from './themes/night.module.css'
+import { randomWord } from '../Randomizer';
+import { randomWordRu } from '../RandomizerRu';
 
 function Game() {
-  const { themes } = useSelector((state) => state.game)
+  const { themes, lang } = useSelector((state) => state.game)
   const styles = themes.day && defaultTheme || themes.night && nightTheme
+  const random = lang.en && randomWord || lang.ru && randomWordRu
 
-  const [currentWord, setCurrentWord] = useState(randomWord())
+  const [currentWord, setCurrentWord] = useState(random())
   const [input, setInput] = useState('')
   const [correct, setCorrect] = useState(0)
 
@@ -43,7 +45,7 @@ function Game() {
     event.preventDefault()
     if (input.trim() === currentWord && correct < difficult) {
       setCorrect((prev) => prev + 1)
-      setCurrentWord(randomWord())
+      setCurrentWord(random())
     }
     if (input.trim() !== currentWord && input.trim() !== '') {
       setMistakesCount((prev) => prev + 1)
@@ -66,7 +68,7 @@ function Game() {
     setMistakesCount(0)
     setMistakes([])
     setMistake([])
-    setCurrentWord(randomWord())
+    setCurrentWord(random())
     setShowMistakes(false)
     setEnd(false)
     setStart(false)
